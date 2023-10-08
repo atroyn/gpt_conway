@@ -1,0 +1,16 @@
+{'alive': 0, 'dead': 8, 'self_alive': True, 'next': False}
+{'alive': 0, 'dead': 8, 'self_alive': False, 'next': False}
+{'alive': 1, 'dead': 7, 'self_alive': True, 'next': False}
+{'alive': 1, 'dead': 7, 'self_alive': False, 'next': False}
+{'alive': 2, 'dead': 6, 'self_alive': True, 'next': True}
+{'alive': 2, 'dead': 6, 'self_alive': False, 'next': False}
+{'alive': 3, 'dead': 5, 'self_alive': True, 'next': True}
+{'alive': 3, 'dead': 5, 'self_alive': False, 'next': True}
+{'alive': 4, 'dead': 4, 'self_alive': True, 'next': False}
+{'alive': 4, 'dead': 4, 'self_alive': False, 'next': False}
+{'alive': 5, 'dead': 3, 'self_alive': True, 'next': False}
+{'alive': 5, 'dead': 3, 'self_alive': False, 'next': False}
+{'alive': 6, 'dead': 2, 'self_alive': True, 'next': False}
+{'alive': 6, 'dead': 2, 'self_alive': False, 'next': False}
+{'alive': 7, 'dead': 1, 'self_alive': True, 'next': False}
+{'alive': 7, 'dead': 1, 'self_alive': False, 'next': False}
