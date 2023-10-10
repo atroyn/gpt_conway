@@ -17,3 +17,24 @@ Conway's Game of Life is a well-studied 2D grid cellular automaton, which evolve
 - A cell's state in the next timestep is determined by the state of its 8 neighbours in the current timestep:
   - If a cell is alive, it remains alive if it has 2 or 3 live neighbours, otherwise it dies
   - If a cell is dead, it becomes alive if it has exactly 3 live neighbours, otherwise it remains dead
+
+Game of life is a great testbed for our purposes because:
+
+- The set of rules is simple and well-defined.
+- The state of the board admits many representations.
+- Even small boards (e.g. 10x10 boards as we use here) have combinatorially many (2^100) possible states, so a given board state is unlikely to be in the training set.
+- The statistics of the state transitions are unbalanced.
+
+To be very clear, I think it's possible to train a transformer model to play game of life, but that's not what we're doing here.
+
+## Running the experiments
+
+This code is pretty messy and ad-hoc, I might clean it up later.
+
+```bash
+pip install -r requirements.txt
+export OPENAI_API_KEY=sk-YOUR_API_KEY
+
+python gpt_game_of_life.py
+python rules.py
+```
