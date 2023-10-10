@@ -37,7 +37,7 @@ def render_board(board, display=False):
     """Turn the board into a string."""
     rows, cols = board.shape
     board_str = "\n".join(
-        "".join("X" if board[x, y] else "." for y in range(cols)) for x in range(rows)
+        "".join("1" if board[x, y] else "0" for y in range(cols)) for x in range(rows)
     )
 
     if display:
@@ -56,7 +56,7 @@ def predict_board(board, height, width, model="gpt-4"):
     messages = [
         {
             "role": "system",
-            "content": f"You are simulating conway's game of life. You are given the board state. Live cells are represented by ' X' and dead cells are represented by ' .'. You will be shown a board state and you must predict the next board state. Assume all cells outside the board are dead."
+            "content": f"You are simulating conway's game of life. You are given the board state. Live cells are represented by ' 1' and dead cells are represented by ' 0'. You will be shown a board state and you must predict the next board state. Assume all cells outside the board are dead."
             f"IMPORTANT: Only output the next board state, in the given representation. Only output the state of the cells in the initial board with width {width} and height {height}, not any other cells. Do not output anything else.",
         },
         {"role": "user", "content": board_tokens},
@@ -64,6 +64,7 @@ def predict_board(board, height, width, model="gpt-4"):
     response = openai.ChatCompletion.create(
         model=model,
         messages=messages,
+        temperature=0.0,
     )
 
     # Transform the response into a board
@@ -74,7 +75,7 @@ def predict_board(board, height, width, model="gpt-4"):
 
     # Throws ValueError if the response is not a valid board
     predicted_board = np.array(
-        [[1 if c == "X" else 0 for c in line] for line in predicted_str.split("\n")]
+        [[int(c) for c in line] for line in predicted_str.split("\n")]
     )
 
     if predicted_board.shape != (height, width):
@@ -106,7 +107,7 @@ def main():
 
         # Run the game of life for one step
         simulated_board = update(board)
-        simulated_file.write(f"{render_board(board)}\n\n")
+        simulated_file.write(f"{render_board(simulated_board)}\n\n")
 
         # Use the model to predict the board for one step
         try:
